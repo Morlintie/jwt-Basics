@@ -17,8 +17,9 @@ const postRegister = async (req, res) => {
 
 const getRegister = async (req, res) => {
   const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    throw new CustomAPIError("you are not authorized to this route", 401);
+
+  if (!authHeader || authHeader.startsWith("Bearer null")) {
+    throw new CustomAPIError("you are not authorized for this route", 401);
   }
   const token = authHeader.split(" ")[1];
   let data;
@@ -27,6 +28,7 @@ const getRegister = async (req, res) => {
   } catch (error) {
     throw new CustomAPIError("The token has been expired", 401);
   }
+
   const luckyNumber = Math.floor(Math.random() * 100);
 
   res.status(200).json({

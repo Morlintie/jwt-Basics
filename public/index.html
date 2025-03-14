@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JWT-BASICS</title>
+    <meta name="description" content="this is a learning project " />
+    <meta name="keywords" content="no, intention, marketing" />
+    <meta name="author" content="Morlintie" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./publicCss/genelra.css" />
+  </head>
+  <body>
+    <main>
+      <form class="login-con">
+        <h1 class="login-header">Welcome Home</h1>
+        <div class="submit-section">
+          <input class="login-input" type="text" placeholder="username" />
+          <input
+            class="login-input password-input"
+            type="password"
+            placeholder="password"
+          />
+          <button class="login-submit post-submit">submit</button>
+          <p class="error-login">please provide credentials</p>
+        </div>
+      </form>
+      <section class="private-con">
+        <h1 class="private-header">Here's your private data</h1>
+        <div class="private-section">
+          <p class="token-info">no token is provided</p>
+          <p class="incoming-data"></p>
+          <button class="login-submit get-button">Get Data</button>
+          <p class="private-error"></p>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./publicJS/general.js"></script>
+  </body>
+</html>
