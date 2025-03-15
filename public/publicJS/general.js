@@ -38,12 +38,17 @@ function generalJS() {
       errorLogin.textContent = error;
       errorLogin.classList.add("display-error");
       localStorage.removeItem("token");
+      incomingData.innerHTML = "";
+      generalJS();
     }
   });
 
   if (localStorage.getItem("token")) {
     tokenInformer.textContent = "token is valid";
     tokenInformer.classList.add("token-valid");
+  } else {
+    tokenInformer.textContent = "no token is provided";
+    tokenInformer.classList.remove("token-valid");
   }
 
   getButton.addEventListener("click", async (event) => {

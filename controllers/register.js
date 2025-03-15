@@ -1,10 +1,11 @@
-const CustomAPIError = require("../errors/errors.js");
+const { BadRequestError } = require("../errors");
+
 const jwt = require("jsonwebtoken");
 
 const postRegister = async (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    throw new CustomAPIError("please provide the credentials", 400);
+    throw new BadRequestError("Please provide the credentials");
   }
 
   const id = crypto.randomUUID();
@@ -16,23 +17,10 @@ const postRegister = async (req, res) => {
 };
 
 const getRegister = async (req, res) => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader || authHeader.startsWith("Bearer null")) {
-    throw new CustomAPIError("you are not authorized for this route", 401);
-  }
-  const token = authHeader.split(" ")[1];
-  let data;
-  try {
-    data = await jwt.verify(token, process.env.JWT_SECRET);
-  } catch (error) {
-    throw new CustomAPIError("The token has been expired", 401);
-  }
-
   const luckyNumber = Math.floor(Math.random() * 100);
 
   res.status(200).json({
-    msg: `Welcome ${data.username}, your lucky number is ${luckyNumber}`,
+    msg: `Welcome ${req.user.username}, your lucky number is ${luckyNumber}`,
     success: true,
   });
 };
